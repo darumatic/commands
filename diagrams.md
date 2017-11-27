@@ -1,4 +1,4 @@
-#Sequence diagram
+# Sequence diagram
 
 Cool an easy sequence diagram with PlantUML 
 ```
