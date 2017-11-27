@@ -10,7 +10,7 @@ kubectl get componentstatuses
 
 # Memory / resource check
 ```
-for i in `k get nodes |grep -v NAME|cut -d ' ' -f 1`; do k top node $i;done
+for i in `kubectl get nodes |grep -v NAME|cut -d ' ' -f 1`; do kubectl top node $i;done
 ```
 The output will be something like:
 NAME              CPU(cores)   CPU%      MEMORY(bytes)   MEMORY%  
