@@ -1,14 +1,14 @@
-#Create Docker Registry Secret
+# Create Docker Registry Secret
 ```
 kubectl create secret docker-registry nexus --docker-server=localhost:5000 --docker-username=admin --docker-password= --docker-email=hello@darumatic.com
 ```
 
-#Kubernetes components quick health check
+# Kubernetes components quick health check
 ```
 kubectl get componentstatuses
 ```
 
-#Memory / resource check
+# Memory / resource check
 ```
 for i in `k get nodes |grep -v NAME|cut -d ' ' -f 1`; do k top node $i;done
 ```
