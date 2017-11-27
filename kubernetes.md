@@ -8,6 +8,7 @@ kubectl create secret docker-registry nexus --docker-server=localhost:5000 --doc
 kubectl get componentstatuses
 ```
 You should see something like:
+
 NAME                 STATUS    MESSAGE              ERROR
 controller-manager   Healthy   ok                   
 scheduler            Healthy   ok                   
