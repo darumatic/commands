@@ -42,3 +42,10 @@ NAME              CPU(cores)   CPU%      MEMORY(bytes)   MEMORY%
 u-k8s-worker-07   133m         3%        2619Mi          36%      
 NAME              CPU(cores)   CPU%      MEMORY(bytes)   MEMORY%  
 u-k8s-worker-08   186m         4%        5500Mi          76%    
+
+# Copy directory from pod
+```
+#copy .ssh directory into a local .ssh directory
+kubectl cp sdlc/ubuntu-agent-2786121838-xxpkf:/root/.ssh .ssh
+```
+
