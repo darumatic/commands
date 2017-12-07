@@ -12,7 +12,6 @@ ansible-playbook -i onegov_uat_cluster.cfg -b --become-user=root -u k8user insed
 Insedocker.yaml
 ```
 ---
----
 - hosts: u-k8s-worker-01
   tasks:
   - name: copy daemon
