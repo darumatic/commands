@@ -62,8 +62,8 @@ fulload() { dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=
 ```
 
 
+#References
 
-References: 
 * #1 http://blog.kubernetes.io/2016/07/autoscaling-in-kubernetes.html
 * #2 https://github.com/kubernetes/kubernetes/blob/8caeec429ee1d2a9df7b7a41b21c626346b456fb/docs/design/horizontal-pod-autoscaler.md#autoscaling-algorithm
 * #3 https://kubernetes.io/docs/tasks/administer-cluster/memory-default-namespace/
