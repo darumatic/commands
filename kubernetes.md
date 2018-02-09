@@ -90,6 +90,11 @@ We apply our autoscaling policy:
 If your pod existed before-hand and didn't have any cpu request, make sure to recreate so it gets the default namespace cpu target.
 
 
+To simulate load within a pod you can run:
+
+```
+fulload() { dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null |dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null & }; fulload; read; killall dd
+```
 
 
 
