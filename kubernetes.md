@@ -86,8 +86,9 @@ Quoting the documentation (#2): "Starting and stopping pods may introduce noise 
 
 We apply our autoscaling policy: 
 ```
-kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
 ```
+If your pod existed before-hand and didn't have any cpu request, make sure to recreate so it gets the default namespace cpu target.
+
 
 
 
