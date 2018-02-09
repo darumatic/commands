@@ -88,9 +88,9 @@ kubectl get pods -n dev |grep app
 k get hpa app2 -o yaml
 ```
 
-Scaling up and down examples:
 
-https://imgur.com/a/fKkw7
+
+
 
 
 #References
