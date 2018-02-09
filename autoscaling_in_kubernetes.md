@@ -1,4 +1,4 @@
-In this document we will explain how to setup auto-scaling as per Kubernetes 1.7. 
+In this document I will explain how to setup auto-scaling as per Kubernetes 1.7. 
 
 Only pod scaling is covered but no node scaling which depends on the integration of Kubernetes and your cloud provider to provision new nodes.
 
@@ -45,20 +45,47 @@ spec:
 
 # Autoscaling
 
-Once you setup the cpu request, you are ready to setup autoscaling. But before you need to decide your cpu target values and minimum to maximum number of pods according to your pod's load. The autoscaling algorithm will increase pods faster than it decreases. This is to avoid noise and given that there is generaly less rush increasing capacity rather than decreasing it.
+Once you setup the cpu request, you are ready to setup autoscaling. But before, you need to decide how much cpu your pods should consume in order to trigger a scale order (cpu target value) Also you need to setup the maximum and minimum limits for your pods to scale up or down. Unfortunately you can't scale to infinite but surely to a very large number of pods. 
+
+The autoscaling algorithm will increase pods faster than it decreases. This is to avoid noise and given that there is generally less rush increasing capacity rather than decreasing it.
 
 Quoting the documentation (#2): "Starting and stopping pods may introduce noise to the metric (for instance, starting may temporarily increase CPU). So, after each action, the autoscaler should wait some time for reliable data. Scale-up can only happen if there was no rescaling within the last 3 minutes. Scale-down will wait for 5 minutes from the last rescaling." 
 
 We apply our autoscaling policy: 
-```
-```
-If your pod existed before-hand and didn't have any cpu request, make sure to recreate so it gets the default namespace cpu target.
 
+```bash
+kubectl autoscale deployment file-beat --cpu-percent=50 --min=1 --max=5
+```
+In this case we are specifying to scale the file-beat deployment once the cpu load hits 50% of the cpu requested and up to 5 pods.
+
+In order for this to work, make sure to specify a cpu target in all the containers within your deployment. To verify this, just run:
+
+```bash
+adrian@adrian-ubuntu-XPS:~$ kubectl get hpa
+NAME         REFERENCE                            TARGETS             MINPODS   MAXPODS   REPLICAS   AGE
+myapp        Deployment/myapp                     <unknown> / 50%     1         5         1          6h
+app2         Deployment/app2                      0% / 50%            1         5         1          5h
+```
+
+In the example above myapp doesn't have cpu target defined properly while app2 does. Therefore we can get autoscaling to properlt work for app2. 
+
+
+# Test
 
 To simulate load within a pod you can run:
 
 ```
 fulload() { dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null |dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null | dd if=/dev/zero of=/dev/null & }; fulload; read; killall dd
+```
+
+Other commands to help you out:
+
+```bash
+#to verify number of pods
+kubectl get pods -n dev |grep app
+
+#to get status updates from the auto-scaler
+k get hpa app2 -o yaml
 ```
 
 
