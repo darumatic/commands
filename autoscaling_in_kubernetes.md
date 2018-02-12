@@ -4,9 +4,9 @@ Only pod scaling is covered but no node scaling which depends on the integration
 
 # Setting up the pod cpu request
 
-First we need to setup the cpu requests. This is due to the autoscaling algorithm using the cpu requests to decide when to scale. For example if we decide to scale when we hit 50% of the cpu, that 50% will be decided towards the requested cpu and not actually a full cpu unit as per the 'top' command in bash. 
+First we need to setup the cpu requests. This is due to the autoscaling algorithm using the cpu requests to decide when to scale. For example if we decide to scale when we hit 50% of the cpu, that 50% will be decided towards the requested cpu and not actually a full cpu unit as per the 'top' command in bash (Linux).
 
-This is how we specify a cpu request limit. Additionally I'm setting up the cpu limits and memory request and limits. Cpu and memory requests provides Kubernetes enough information to know how many pods can fit on each node. Limits are passed to the Docker engine which in turns uses Cgroups to control the resource limits of each container.   
+In the snippet below I'm setting up a cpu request limit. On top of it I'm also setting up the cpu limits and memory request and limits. Cpu and memory requests provides Kubernetes enough information to know how many pods can fit on each node. Limits are passed to the Docker engine which in turn uses Cgroups to control the resource limits of each container.   
 
 This is the detail of the deployment yaml file that defines a pod and its limits.
 
@@ -22,9 +22,10 @@ This is the detail of the deployment yaml file that defines a pod and its limits
             cpu: "0.2"
 ```
 
-An alternative to individual limit is to create a Limit Range object. 
+A Limit Range provides default values within a namespace. Any particular container within a pod definition can overwrite the limit range values. One clarification though, in my test as per Kubernetes 1.7 the limit range values would not be picked up by the auto-scaler even after recreating the deployment so make sure that he kubectl get hpa ​returns something different than 'unknown' in order to check the limit is properly setup.
 
-A Limit Range provides *default* values within a namespace. Any particular container within a pod definition can overwrite the limit range values. One clarification though, in my test as per Kubernetes 1.7 the limit range values would not be picked up by the auto-scaler even after recreating the deployment. In any case, this is how it looks like:  
+In any case, this is how it looks like:
+
 
 limitrange.yaml content
 ```
