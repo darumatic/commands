@@ -1,6 +1,8 @@
-In this document I will explain how to setup auto-scaling as per Kubernetes 1.7. 
+# Motivation - What is 'The Hug of Death'?
 
-Only pod scaling is covered but no node scaling which depends on the integration of Kubernetes and your cloud provider to provision new nodes.
+The hug of death, also known as 'Slashdot Effect' (4) is caused when someone posts a link to a website, for example, the press, saying "Hey everyone, look at this website!" and everyone does. This puts so much traffic on the site in question's servers that they get overloaded and crash, causing the site to be inaccessible until the amount of traffic slows down.
+
+In this document I will explain how to setup pod auto-scaling as per Kubernetes 1.7.
 
 # Setting up the pod cpu request
 
@@ -99,3 +101,4 @@ k get hpa app2 -o yaml
 * #1 http://blog.kubernetes.io/2016/07/autoscaling-in-kubernetes.html
 * #2 https://github.com/kubernetes/kubernetes/blob/8caeec429ee1d2a9df7b7a41b21c626346b456fb/docs/design/horizontal-pod-autoscaler.md#autoscaling-algorithm
 * #3 https://kubernetes.io/docs/tasks/administer-cluster/memory-default-namespace/
+* #4 https://en.wikipedia.org/wiki/Slashdot_effect
