@@ -4,7 +4,7 @@ Only pod scaling is covered but no node scaling which depends on the integration
 
 # Setting up the pod cpu request
 
-First we need to setup the cpu requests. This is due to the autoscaling algorithm using the cpu requests to decide when to scale. For example if we decide to scale when we hit 50% of the cpu, that 50% will be decided towards the requested cpu and ont actually a full cpu unit as per the 'top' command in bash. 
+First we need to setup the cpu requests. This is due to the autoscaling algorithm using the cpu requests to decide when to scale. For example if we decide to scale when we hit 50% of the cpu, that 50% will be decided towards the requested cpu and not actually a full cpu unit as per the 'top' command in bash. 
 
 This is how we specify a cpu request limit. Additionally I'm setting up the cpu limits and memory request and limits. Cpu and memory requests provides Kubernetes enough information to know how many pods can fit on each node. Limits are passed to the Docker engine which in turns uses Cgroups to control the resource limits of each container.   
 
