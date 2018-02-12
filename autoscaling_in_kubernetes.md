@@ -46,13 +46,13 @@ spec:
 
 # Autoscaling
 
-Once you setup the cpu request, you are ready to setup autoscaling. But before, you need to decide how much cpu your pods should consume in order to trigger a scale order (cpu target value) Also you need to setup the maximum and minimum limits for your pods to scale up or down. Unfortunately you can't scale to infinite but surely to a very large number of pods. 
+Once you setup the cpu request, you are ready to setup autoscaling. But before, you need to decide how much cpu your pods should consume in order to trigger a scale order (cpu target value) Also you need to setup the maximum and minimum limits for your pods to scale up or down. Unfortunately you can't scale to infinite but surely to a very large number of pods.
 
-The autoscaling algorithm will increase pods faster than it decreases. This is to avoid noise and given that there is generally less rush increasing capacity rather than decreasing it.
+The autoscaling algorithm will increase pods faster than it decreases them. This is to avoid noise and given that there is generally less rush increasing capacity rather than decreasing it.
 
-Quoting the documentation (#2): "Starting and stopping pods may introduce noise to the metric (for instance, starting may temporarily increase CPU). So, after each action, the autoscaler should wait some time for reliable data. Scale-up can only happen if there was no rescaling within the last 3 minutes. Scale-down will wait for 5 minutes from the last rescaling." 
+Quoting the documentation (#2): "Starting and stopping pods may introduce noise to the metric (for instance, starting may temporarily increase CPU). So, after each action, the autoscaler should wait some time for reliable data. Scale-up can only happen if there was no rescaling within the last 3 minutes. Scale-down will wait for 5 minutes from the last rescaling."
 
-We apply our autoscaling policy: 
+We apply our autoscaling policy:
 
 ```bash
 kubectl autoscale deployment file-beat --cpu-percent=50 --min=1 --max=5
