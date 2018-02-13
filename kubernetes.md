@@ -49,3 +49,8 @@ u-k8s-worker-08   186m         4%        5500Mi          76%
 kubectl cp sdlc/ubuntu-agent-2786121838-xxpkf:/root/.ssh .ssh
 ```
 
+# Checking failing pods in different clusters
+```bash
+for i in c1-uat,c1-prod,c2-prod,c2-uat do;k --kubeconfig /home/adrian/.kube/config-$i get pods --all-namespaces -o wide|grep -v Running;done
+```
+
