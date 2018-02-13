@@ -50,7 +50,10 @@ kubectl cp sdlc/ubuntu-agent-2786121838-xxpkf:/root/.ssh .ssh
 ```
 
 # Checking failing pods in different clusters
+This command analyse failing pods (not in 'Running state') across different clusters. 
+
+Please replace the configuration files: c1-uat,c1-prod,c2-prod,c2-uat accordingly
 ```bash
-for i in c1-uat,c1-prod,c2-prod,c2-uat do;k --kubeconfig /home/adrian/.kube/config-$i get pods --all-namespaces -o wide|grep -v Running;done
+for i in {c1-uat,c1-prod,c2-prod,c2-uat} ;do echo $i;k --kubeconfig ~/.kube/config-$i get pods --all-namespaces -o wide|grep -v Running;done
 ```
 
