@@ -55,5 +55,17 @@ This command analyse failing pods (not in 'Running state') across different clus
 Please replace the configuration files: c1-uat,c1-prod,c2-prod,c2-uat accordingly
 ```bash
 for i in {c1-uat,c1-prod,c2-prod,c2-uat} ;do echo $i;k --kubeconfig ~/.kube/config-$i get pods --all-namespaces -o wide|grep -v Running;done
+
+#Output:
+#c1-uat
+#NAMESPACE            NAME                                       READY     STATUS    RESTARTS   AGE       IP               NODE
+#c1-prod
+#NAMESPACE            NAME                                       READY     STATUS    RESTARTS   AGE       IP               NODE
+#c2-prod
+#NAMESPACE            NAME                                       READY     STATUS    RESTARTS   AGE       IP               NODE
+#c2-uat
+#NAMESPACE            NAME                                       READY     STATUS    RESTARTS   AGE       IP              NODE
+adrian@adrian-ubuntu-XPS:~$ 
+
 ```
 
