@@ -9,16 +9,29 @@ helm install coreos/prometheus-operator --name prometheus-operator --namespace m
 helm install coreos/kube-prometheus --name kube-prometheus --set global.rbacEnable=true --set global.service.type=NodePort --set prometheus.service.type=NodePort --namespace monitoring
 ```
 
-# Accessing the services locally
+# Accessing the services 
 ```bash
-kubectl port-forward -n monitoring prometheus-kube-prometheus-0 9090
-kubectl port-forward $(kubectl get  pods --selector=app=kube-prometheus-grafana -n  monitoring --output=jsonpath="{.items..metadata.name}") -n monitoring  3000
-kubectl port-forward -n monitoring alertmanager-kube-prometheus-0 9093
+kubectl edit svc -n monitoring kube-prometheus-grafana  
+
+#change
+#  type: ClusterIP
+#for:
+#  type: NodePOrt
+
+#Same change below:
+kubectl edit svc -n monitoring kube-prometheus-alertmanager
 ```
-Now we can access: 
-* Main Prometheus service in: http://localhost:9090/  
-* Graphana: http://localhost:3000/  
-* Prometheus Alert Manager: http://localhost:9093/  
+
+## Accesing the services  
+
+```bash
+kubectl get svc -n monitoring 
+```
+Get the service port for: 
+* Main Prometheus service: kube-prometheus-prometheus
+* Graphan: kube-prometheus-grafana
+* Prometheus Alert Manager kube-prometheus-alertmanager
+
 
 # Notes
 
