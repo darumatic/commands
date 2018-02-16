@@ -5,8 +5,8 @@
 # Installation
 ```bash
 helm repo add coreos https://s3-eu-west-1.amazonaws.com/coreos-charts/stable/
-helm install coreos/prometheus-operator --name prometheus-operator --namespace monitoring
-helm install coreos/kube-prometheus --name kube-prometheus --set global.rbacEnable=true --namespace monitoring
+helm install coreos/prometheus-operator --name prometheus-operator --namespace monitoring --set server.service.type=NodePort
+helm install coreos/kube-prometheus --name kube-prometheus --set global.rbacEnable=true --set global.service.type=NodePort --set prometheus.service.type=NodePort --namespace monitoring
 ```
 
 # Accessing the services locally
@@ -27,7 +27,8 @@ Now we can access:
 
 # References and / or further information
 * https://itnext.io/kubernetes-monitoring-with-prometheus-in-15-minutes-8e54d1de2e13
-* https://hub.kubeapps.com/charts/stable/prometheus
+* https://github.com/coreos/prometheus-operator/tree/master/helm
 * https://github.com/prometheus/alertmanager
 * https://prometheus.io/docs/alerting/configuration/
 * https://prometheus.io/webtools/alerting/routing-tree-editor/
+* https://hub.kubeapps.com/charts/stable/prometheus
