@@ -23,7 +23,7 @@ Now we can access:
 # Notes
 
 * Nevermind the DeadMansSwitch alert. Is just a dummy alert to verify the system is working fine.
-* Inside prometheus alerts, pay attention to the runbook links, since it contains recommendations into how to fix the alerts. 
+* Inside prometheus alerts, pay attention to the runbook links, since it contains recommendations into how to fix the alerts. Example: https://imgur.com/a/9VFNV
 
 # References and / or further information
 * https://itnext.io/kubernetes-monitoring-with-prometheus-in-15-minutes-8e54d1de2e13
