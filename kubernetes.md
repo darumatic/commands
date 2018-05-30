@@ -69,3 +69,15 @@ adrian@adrian-ubuntu-XPS:~$
 
 ```
 
+# Visualising pods with their containers and versions in a particular namespace
+
+```
+$kubectl -n kube-system get --no-headers=true pods -o custom-columns=:metadata.name,:status.phase,:.spec.containers[*].image 
+calico-kube-controllers-3930078641-twk7l   Running   quay.io/calico/kube-controllers:v1.0.0
+calico-node-4bxsx                          Running   quay.io/calico/node:v2.6.2,quay.io/calico/cni:v1.11.0
+calico-node-6wp5w                          Running   quay.io/calico/node:v2.6.2,quay.io/calico/cni:v1.11.0
+calico-node-9nvxn                          Running   quay.io/calico/node:v2.6.2,quay.io/calico/cni:v1.11.0
+calico-node-gxr31                          Running   quay.io/calico/node:v2.6.2,quay.io/calico/cni:v1.11.0
+calico-node-jkrl5                          Running   quay.io/calico/node:v2.6.2,quay.io/calico/cni:v1.11.0
+calico-node-ps231                          Running   quay.io/calico/node:v2.6.2,quay.io/calico/cni:v1.11.0
+```
