@@ -11,7 +11,7 @@ db.createUser(
 )
 ```
 
-#Restoring a database dump
+# Restoring a database dump
 
 ```
 eg. to restore to the mydb database you need this folder structure:
