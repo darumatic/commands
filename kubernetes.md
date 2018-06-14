@@ -5,7 +5,7 @@ kubectl create secret docker-registry nexus --docker-server=localhost:5000 --doc
 
 # Create TLS Certificate
 ```
-kubectl create secret tls your_tls_name --cert=your_cert_file.cert --key=your_key_file.pk -n your_namespace
+kubectl create secret tls your_tls_name --cert=your_cert_file.crt --key=your_key_file.key -n your_namespace
 ```
 
 # Kubernetes components quick health check
