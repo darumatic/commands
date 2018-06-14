@@ -3,9 +3,9 @@
 kubectl create secret docker-registry nexus --docker-server=localhost:5000 --docker-username=admin --docker-password= --docker-email=hello@darumatic.com
 ```
 
-# Create Certificate Secret
+# Create TLS Certificate
 ```
-kubectl create secret generic ca-cert --from-file=ca.crt -n ingress-controller
+kubectl create secret tls your_tls_name --cert=your_cert_file.cert --key=your_key_file.pk -n your_namespace
 ```
 
 # Kubernetes components quick health check
