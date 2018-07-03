@@ -26,6 +26,15 @@ then in the home folder execute
 mongorestore -u $USER -p $PASSWORD -h $HOST
 ```
 
+# Drop a database
 
+```
+mongo -u user -p pass your_mongodb_ip/admin
+> use mydb
+switched to db mydb
+> db.dropDatabase()
+{ "dropped" : "mydb", "ok" : 1 }
+
+```
 
 
