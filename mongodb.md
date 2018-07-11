@@ -37,4 +37,8 @@ switched to db mydb
 
 ```
 
+# Backup a database
 
+```
+mongodump -u USER -p PASSWORD -h HOST
+```
