@@ -86,3 +86,12 @@ calico-node-gxr31                          Running   quay.io/calico/node:v2.6.2,
 calico-node-jkrl5                          Running   quay.io/calico/node:v2.6.2,quay.io/calico/cni:v1.11.0
 calico-node-ps231                          Running   quay.io/calico/node:v2.6.2,quay.io/calico/cni:v1.11.0
 ```
+
+# k alias
+
+This is what you need to add to your ~/.bashrc to get the command auto completion working with "k" alias:
+```
+alias k="kubectl"
+source <(kubectl completion bash)
+complete -o default -F __start_kubectl k
+```
